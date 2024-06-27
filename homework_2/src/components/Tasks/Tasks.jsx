@@ -3,6 +3,7 @@ import {
   STATUS_IN_PROGRESS,
   STATUS_TODO,
 } from "../../constants/constants.js"
+
 export default function Tasks({ task, changeStatus, deleteTask }) {
   return (
     <div className="tasks">

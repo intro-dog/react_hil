@@ -26,7 +26,9 @@ function App() {
   return (
     <div className="container">
       <div className="tasks__column">
-        <h2>To Do</h2>
+        <h2>
+          To Do: {tasks.filter((task) => task.status === STATUS_TODO).length}
+        </h2>
 
         {tasks
           .filter((task) => task.status === STATUS_TODO)
@@ -35,7 +37,10 @@ function App() {
           ))}
       </div>
       <div className="tasks__column">
-        <h2>In Progress</h2>
+        <h2>
+          In Progress:{" "}
+          {tasks.filter((task) => task.status === STATUS_IN_PROGRESS).length}
+        </h2>
         {tasks
           .filter((task) => task.status === STATUS_IN_PROGRESS)
           .map((task) => (
@@ -43,7 +48,9 @@ function App() {
           ))}
       </div>
       <div className="tasks__column">
-        <h2>Done</h2>
+        <h2>
+          Done : {tasks.filter((task) => task.status === STATUS_DONE).length}
+        </h2>
         {tasks
           .filter((task) => task.status === STATUS_DONE)
           .map((task) => (
