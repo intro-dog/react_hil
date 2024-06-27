@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 20px;
+}
+.tasks__column {
+  text-align: center;
+  width: 300px;
+}
+.tasks {
+  margin: 0 auto;
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+.tasks__title {
+  width: 100px;
+}
+
+.tasks__button {
+  width: 40%;
+}
