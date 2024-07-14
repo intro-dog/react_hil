@@ -286,3 +286,9 @@ input:focus {
 .pizza__sold-out {
   text-transform: uppercase;
 }
+
+.pizza__order-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
