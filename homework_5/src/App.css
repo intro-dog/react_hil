@@ -292,3 +292,8 @@ input:focus {
   align-items: center;
   gap: 10px;
 }
+
+.loading,
+.error {
+  margin: 0 auto;
+}
