@@ -1,23 +1,31 @@
-import React, { useState } from "react"
+import React from "react"
+import { useDispatch, useSelector } from "react-redux"
+import {
+  addItemToCart,
+  decrement,
+  increment,
+  removeItemFromCart,
+} from "../../../store/slices/CartSlice"
 import Button from "../../Button/Button"
 
 export default function MenuItem({ item }) {
-  const [orderCounter, setOrderCounter] = useState(0)
-
+  const dispatch = useDispatch()
+  const cartItems = useSelector((state) => state.cart.items)
+  console.log(cartItems)
   const handleAddToCart = () => {
-    setOrderCounter(1)
+    dispatch(addItemToCart(item))
   }
 
-  const handleOrderIncrease = () => {
-    setOrderCounter((prevState) => prevState + 1)
+  const handleIncrement = (id) => {
+    dispatch(increment({ id }))
   }
 
-  const handleOrderDecrease = () => {
-    setOrderCounter((prevState) => (prevState > 1 ? prevState - 1 : 0))
+  const handleDecrement = (id) => {
+    dispatch(decrement({ id }))
   }
 
-  const handleOrderDelete = () => {
-    setOrderCounter(0)
+  const handleOrderDelete = (id) => {
+    dispatch(removeItemFromCart({ id }))
   }
 
   return (
@@ -35,7 +43,7 @@ export default function MenuItem({ item }) {
             <p className="pizza__price">€{item.unitPrice}.00</p>
           </div>
           <div className="pizza__button">
-            {orderCounter === 0 ? (
+            {cartItems.filter((i) => i.id === item.id).length === 0 ? (
               <Button
                 className={"button"}
                 text={"Add to cart"}
@@ -46,25 +54,25 @@ export default function MenuItem({ item }) {
                 <Button
                   className={"button"}
                   text={"-"}
-                  onClick={handleOrderDecrease}
+                  onClick={() => handleDecrement(item.id)}
                 />
-                <span>{orderCounter}</span>
+                <span>{cartItems.find((i) => i.id === item.id)?.quantity}</span>
                 <Button
                   className={"button"}
                   text={"+"}
-                  onClick={handleOrderIncrease}
+                  onClick={() => handleIncrement(item.id)}
                 />
                 <Button
                   className={"button"}
                   text={"Delete"}
-                  onClick={handleOrderDelete}
+                  onClick={() => handleOrderDelete(item.id)}
                 />
               </div>
             )}
           </div>
         </>
       ) : (
-        <>
+        <div className="pizza--deactivated">
           <img
             className="pizza__image--deactivated"
             src={item.imageUrl}
@@ -75,7 +83,7 @@ export default function MenuItem({ item }) {
             <p className="pizza__ingredients">{item.ingredients.join(", ")}</p>
             <p className="pizza__sold-out">Sold out</p>
           </div>
-        </>
+        </div>
       )}
     </div>
   )

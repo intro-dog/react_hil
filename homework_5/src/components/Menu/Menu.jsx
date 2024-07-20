@@ -6,9 +6,11 @@ export default function Menu() {
     <>
       <Header />
       <main>
-        <section className="menu">
-          <MenuList />
-        </section>
+        <div className="wrapper">
+          <section className="menu">
+            <MenuList />
+          </section>
+        </div>
       </main>
     </>
   )
