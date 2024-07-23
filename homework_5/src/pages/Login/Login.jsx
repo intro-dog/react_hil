@@ -1,7 +1,18 @@
+import { useState } from "react"
 import Header from "../../components/Header/Header"
 import Input from "../../components/Input/Input"
+import { useLogin } from "../../context/LoginContext"
 import Button from "./../../components/Button/Button"
+
 export default function Login() {
+  const [login, setLoginState] = useState("")
+  const { setLogin } = useLogin()
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setLogin(login)
+  }
+
   return (
     <div className="wrapper">
       <Header />
@@ -17,8 +28,13 @@ export default function Login() {
         <div className="sub-title">
           <p>👋 Welcome! Please start by telling us your name:</p>
         </div>
-        <form className="login-form">
-          <Input type={"text"} placeholder={"Your full name"} />
+        <form className="login-form" onSubmit={handleSubmit}>
+          <Input
+            type={"text"}
+            value={login}
+            onChange={(e) => setLoginState(e.target.value)}
+            placeholder={"Your full name"}
+          />
           <Button text={"Login"} className={"button"} />
         </form>
       </main>

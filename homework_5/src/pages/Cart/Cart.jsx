@@ -76,12 +76,16 @@ export default function Cart() {
             <div className="cart-summary">
               <p>Total Price: €{totalPrice}.00</p>
             </div>
-            <div>
+            <div className="cart-actions">
               <Button
                 className={"button button--clear"}
                 text={"Clear Cart"}
                 onClick={handleClearCart}
               />
+              <Link className="button" to={"/order/new"}>
+                {" "}
+                Checkout
+              </Link>
             </div>
           </div>
         ) : (

@@ -65,6 +65,7 @@ input:focus {
 }
 .busket {
   position: relative;
+  cursor: pointer;
   transition: transform 0.3s;
 }
 .busket:hover {
@@ -80,10 +81,12 @@ input:focus {
   font-size: 12px;
   width: 15px;
   height: 15px;
+  cursor: pointer;
   border-radius: 50%;
 }
 .content {
   text-align: center;
+  padding-top: 120px;
 }
 
 .title {
@@ -269,8 +272,50 @@ input:focus {
 .cart-summary {
   font-size: 24px;
 }
+.cart-actions * {
+  text-decoration: none;
+  color: #000;
+}
+.cart-actions {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+}
 .button--clear {
   margin-top: 20px;
   align-items: center;
 }
 /* cart  */
+
+.order-form {
+  padding: 0 15px 20px 15px;
+}
+
+.order-form-title {
+  margin-bottom: 20px;
+}
+.order-form-content {
+  margin-bottom: 15px;
+}
+.order-form-content > div:not(:last-child) {
+  margin-bottom: 15px;
+}
+.order-form-label {
+  margin-right: 5px;
+}
+.order-form-label--checkbox {
+  margin-left: 5px;
+}
+.order-form-item {
+  position: relative;
+}
+.order-form-item--checkbox {
+  margin-bottom: 15px;
+}
+.order-form-error {
+  position: absolute;
+  top: 37px;
+  left: 0;
+  color: red;
+  font-size: 12px;
+}
