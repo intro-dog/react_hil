@@ -1,24 +1,22 @@
-import React from "react"
-import useFetch from "../../../hooks/useFetch"
+import React, { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { getAllPizzas } from "../../../store/slices/PizzaSlice/index"
 import MenuItem from "../MenuItem/MenuItem"
 
 export default function MenuList() {
-  const {
-    isLoading,
-    error,
-    data: pizzas,
-  } = useFetch("https://react-fast-pizza-api.onrender.com/api/menu")
+  const dispatch = useDispatch()
+  const { pizzas, isLoading, error } = useSelector((store) => store.pizza)
 
-  if (isLoading) return <p className="loading">Loading...</p>
-  if (error) return <p className="error">Error: {error}</p>
+  useEffect(() => {
+    dispatch(getAllPizzas())
+  }, [dispatch])
 
   return (
     <>
-      {pizzas?.data.length > 0 ? (
-        pizzas?.data.map((pizza) => <MenuItem key={pizza.id} item={pizza} />)
-      ) : (
-        <p>No pizzas</p>
-      )}
+      {isLoading && <p className="loading">Loading...</p>}
+      {error && <p className="error">Error: {error}</p>}
+      {pizzas?.length > 0 &&
+        pizzas?.map((pizza) => <MenuItem key={pizza.id} item={pizza} />)}
     </>
   )
 }

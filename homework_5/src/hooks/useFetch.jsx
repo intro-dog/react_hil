@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 
 const useFetch = (url) => {
-  const [data, setPizzas] = useState([])
+  const [data, setData] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
 
@@ -18,7 +18,7 @@ const useFetch = (url) => {
         }
 
         const data = await response.json()
-        setPizzas(data)
+        setData(data)
       } catch (error) {
         if (error.name !== "AbortError") {
           setError(error.message)
